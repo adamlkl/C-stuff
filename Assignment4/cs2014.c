@@ -2,6 +2,7 @@
  * Copyright (c) 1996 - 2014 by Steve Baker (ice@mama.indstate.edu)
  * All Rights reserved
  *
+ * Author: Leong Kai Ler
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -160,107 +161,3 @@ off_t my_listdir(char *d, int *dt, int *ft, u_long lev, dev_t dev)
   free_dir(sav);
   return 0;
 }
-
-
-
-/*off_t unix_rlistdir(char *d, int *dt, int *ft, u_long lev, dev_t dev)
-{
-  struct _info **dir;
-  off_t size = 0;
-  char *err;
-  
-  dir = getfulltree(d, lev, dev, &size, &err);
-
-  memset(dirs, 0, sizeof(int) * maxdirs);
-
-  r_listdir(dir, d, dt, ft, lev);
-
-  return size;
-}
-
-void r_listdir(struct _info **dir, char *d, int *dt, int *ft, u_long lev)
-{
-  char *path;
-  long pathsize = 0;
-  struct _info **sav = dir;
-  bool nlf = FALSE, colored = FALSE;
-  int c;
-  
-  if (dir == NULL) return;
-
-  dirs[lev] = 1;
-  if (!*(dir+1)) dirs[lev] = 2;
-  fprintf(outfile,"\n");
-
-  path = malloc(pathsize=4096);
-
-  while(*dir) {
-    if (!noindent) indent(lev);
-    
-    fillinfo(path,*dir);
-    if (path[0] == ' ') {
-      path[0] = '[';
-      fprintf(outfile, "%s]  ",path);
-    }
-    
-    if (colorize) {
-      if ((*dir)->lnk && linktargetcolor) colored = color((*dir)->lnkmode,(*dir)->name,(*dir)->orphan,FALSE);
-      else colored = color((*dir)->mode,(*dir)->name,(*dir)->orphan,FALSE);
-    }
-    
-    if (fflag) {
-      if (sizeof(char) * (strlen(d)+strlen((*dir)->name)+2) > pathsize)
-	path=xrealloc(path,pathsize=(sizeof(char) * (strlen(d)+strlen((*dir)->name)+1024)));
-      if (!strcmp(d,"/")) sprintf(path,"%s%s",d,(*dir)->name);
-      else sprintf(path,"%s/%s",d,(*dir)->name);
-    } else {
-      if (sizeof(char) * (strlen((*dir)->name)+1) > pathsize)
-	path=xrealloc(path,pathsize=(sizeof(char) * (strlen((*dir)->name)+1024)));
-      sprintf(path,"%s",(*dir)->name);
-    }
-    
-    printit(path);
-    
-    if (colored) fprintf(outfile,"%s",endcode);
-    if (Fflag && !(*dir)->lnk) {
-      if ((c = Ftype((*dir)->mode))) fputc(c, outfile);
-    }
-    
-    if ((*dir)->lnk) {
-      fprintf(outfile," -> ");
-      if (colorize) colored = color((*dir)->lnkmode,(*dir)->lnk,(*dir)->orphan,TRUE);
-      printit((*dir)->lnk);
-      if (colored) fprintf(outfile,"%s",endcode);
-      if (Fflag) {
-	if ((c = Ftype((*dir)->lnkmode))) fputc(c, outfile);
-      }
-    }
-    
-    if ((*dir)->err) {
-      fprintf(outfile," [%s]", (*dir)->err);
-      free((*dir)->err);
-      (*dir)->err = NULL;
-    }
-    if ((*dir)->child) {
-      if (fflag) {
-	if (strlen(d)+strlen((*dir)->name)+2 > pathsize) path=xrealloc(path,pathsize=(strlen(d)+strlen((*dir)->name)+1024));
-	if (!strcmp(d,"/")) sprintf(path,"%s%s",d,(*dir)->name);
-	else sprintf(path,"%s/%s",d,(*dir)->name);
-      }
-      r_listdir((*dir)->child, fflag? path : NULL, dt, ft, lev+1);
-      nlf = TRUE;
-      *dt += 1;
-    } else {
-      if ((*dir)->isdir) *dt += 1;
-      else *ft += 1;
-    }
-
-    if (*(dir+1) && !*(dir+2)) dirs[lev] = 2;
-    if (nlf) nlf = FALSE;
-    else fprintf(outfile,"\n");
-    dir++;
-  }
-  dirs[lev] = 0;
-  free(path);
-  free_dir(sav);
-}*/
