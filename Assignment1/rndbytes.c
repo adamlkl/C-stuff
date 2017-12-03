@@ -1,6 +1,7 @@
 
 /*
  * Copyright (c) 2017 stephen.farrell@cs.tcd.ie
+ * Author: Leong Kai Ler
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +45,7 @@ void usage(char *progname)
     exit(-1);
 }
 
+//returns a random byte
 unsigned char rndbyte()
 {
     unsigned long int s;
@@ -58,11 +60,13 @@ int main(int argc,char *argv[])
     int number;
     int lineLimit=8;
 
+//check number of inputs 
     if (argc!=3) {
         printf("Input error!!!");
         return(-1);
     }
 
+//check number of bytes to print
     else {
         int newnumber=atoi(argv[1]);
 
@@ -79,6 +83,7 @@ int main(int argc,char *argv[])
         file=fopen(filename,"w");
     }
 
+//print bytes
     for (int i = 0; i != number; i++) {
         unsigned char byte1 = rndbyte();
         fprintf(file,"%d,%02x",i,byte1);
