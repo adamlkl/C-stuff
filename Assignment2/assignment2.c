@@ -1,7 +1,7 @@
 /*
  *  AES-256 file encryption program
  * 
- * Author: Leong Kai Ler
+ *  Editor: Leong Kai Ler
  *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
  *
