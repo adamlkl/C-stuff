@@ -1,6 +1,7 @@
 /*
  *  AES-256 file encryption program
- *
+ * 
+ * Author: Leong Kai Ler
  *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
  *
@@ -132,6 +133,7 @@ int main( int argc, char *argv[] )
 
     mode=-1;
  
+    //check encryption type
     if(strcasestr("encryption", argv[1]) != NULL)
     {
 	mode=0;
