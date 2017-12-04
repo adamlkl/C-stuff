@@ -1,6 +1,6 @@
 This is an c++ assignment that connects to a server on a TCP socket and logs the server's response to an HTTP GET request that you send it via the socket.
 
-Your binary must take the following command line arguments, in both long and short form:
+The binary takes the following command line arguments, in both long and short form:
 
     h, host: the DNS name or IP address of the host to contact
 
