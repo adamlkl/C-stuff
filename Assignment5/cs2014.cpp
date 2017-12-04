@@ -1,3 +1,4 @@
+//Author: Leong Kai Ler
 #include <iostream>
 #include "option_handler.h"
 #include <stdio.h>
